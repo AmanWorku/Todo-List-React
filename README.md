@@ -54,7 +54,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-You can visit the [Live Demo Website](https://amanworku.github.io/React-Todo-List/).
+You can visit the [Live Demo Website](https://amanworku.github.io/Todo-List-React/).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -70,8 +70,8 @@ To get a local copy up and running, follow these steps.
 Clone this repository to your desired folder:
 
 ```sh
-  git clone https://github.com/AmanWorku/React-Todo-List.git
-  cd Math-magician
+  git clone https://github.com/AmanWorku/Todo-List-React.git
+  cd Todo-List-React
 ```
 
 
@@ -103,13 +103,11 @@ To to build for the production, execute the following command:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
-
 ## 🤝 Contributing <a name="contributing"></a>
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/AmanWorku/React-Todo-List/issues).
+Feel free to check the [issues page](https://github.com/AmanWorku/Todo-List-React/issues).
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
