@@ -24,12 +24,13 @@
   padding: 10px;
   margin: 5px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  color: aqua;
+  color: rgb(148, 148, 148);
   font-size: 1rem;
   font-weight: bold;
   text-decoration: none;
 }
 
 .nav-item.active {
-  color: #ececec;
+  color: rgb(50, 20, 67);
+  border: 1px solid rgb(50, 20, 67);
 }

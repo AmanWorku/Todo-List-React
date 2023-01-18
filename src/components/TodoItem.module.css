@@ -1,9 +1,12 @@
 .item {
+  margin-top: 10px;
   font-size: 1.2rem;
   list-style-type: none;
   padding: 17px 15px;
   border-bottom: 1px solid #eaeaea;
   width: 100%;
+  box-shadow: 3px 3px 15px rgba(68, 68, 68, 0.195);
+  border-radius: 10px;
 }
 
 .checkbox {
