@@ -1,36 +1,32 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
+// eslint-disable-next-line
+const TodosList = (props) => {
+  const {
+    todos, handleChange, delTodo, setUpdate,
+  } = props;
 
-const TodosList = ({
-  todos,
-  handleChangeProps,
-  deleteTodoProps,
-  setUpdate,
-}) => (
-  <ul className="todo-items">
-    {todos.map((todo) => (
-      <TodoItem
-        key={todo.id}
-        todo={todo}
-        handleChangeProps={handleChangeProps}
-        deleteTodoProps={deleteTodoProps}
-        setUpdate={setUpdate}
-      />
-    ))}
-  </ul>
-);
+  return (
+    <ul>
+      {todos.map((todo) => (
+        <TodoItem
+          key={todo.id}
+          todo={todo}
+          handleChange={handleChange}
+          delTodo={delTodo}
+          setUpdate={setUpdate}
+        />
+      ))}
+    </ul>
+  );
+};
 
 TodosList.propTypes = {
-  todos: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      title: PropTypes.string,
-      completed: PropTypes.bool,
-    }),
-  ).isRequired,
-  handleChangeProps: PropTypes.func.isRequired,
-  deleteTodoProps: PropTypes.func.isRequired,
+  todos: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string)).isRequired,
+  handleChange: PropTypes.func.isRequired,
+  delTodo: PropTypes.func.isRequired,
   setUpdate: PropTypes.func.isRequired,
 };
+
 export default TodosList;

@@ -1,52 +1,55 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 import { FaPlusCircle } from 'react-icons/fa';
-import PropTypes from 'prop-types';
 
-const InputTodo = ({ addTodoItem }) => {
-  const [inputText, setInputText] = useState({
-    title: '',
-  });
+class InputTodo extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+    };
+  }
 
-  const onChange = (e) => {
-    setInputText({
-      ...inputText,
-      [e.target.name]: e.target.value,
+  onChange = (e) => {
+    const { name, value } = e.target;
+    this.setState({
+      [name]: value,
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (inputText.title.trim()) {
-      addTodoItem(inputText.title);
-      setInputText({
-        title: '',
-      });
-    } else {
-      alert('Please write item'); // eslint-disabled-line
-    }
-  };
+    handleSubmit = (e) => {
+      e.preventDefault();
+      // eslint-disable-next-line
+      if (this.state.title.trim()) {
+      // eslint-disable-next-line
+      this.props.addTodoProps(this.state.title);
+        this.setState({
+          title: '',
+        });
+      } else {
+      // eslint-disable-next-line
+      alert('Please write item');
+      }
+    };
 
-  return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <input
-        type="text"
-        className="input-text"
-        placeholder="Add todo..."
-        value={inputText.title}
-        name="title"
-        onChange={onChange}
-      />
-      <button type="submit" className="input-submit">
-        <FaPlusCircle
-          style={{ color: 'darkcyan', fontSize: '20px', marginTop: '2px' }}
+    render() {
+      return (
+      // eslint-disable-next-line
+      <form onSubmit={this.handleSubmit} className="form-container">
+        <input
+          type="text"
+          className="input-text"
+          placeholder="Add Todo..."
+          name="title"
+          onChange={this.onChange}
+          // eslint-disable-next-line
+          value={this.state.title}
         />
-      </button>
-    </form>
-  );
-};
-
-InputTodo.propTypes = {
-  addTodoItem: PropTypes.func.isRequired,
-};
+        <button type="submit" className="input-submit">
+          <FaPlusCircle style={{ color: 'darkcyan', fontSize: '20px', marginTop: '2px' }} />
+        </button>
+      </form>
+      );
+    }
+}
 
 export default InputTodo;

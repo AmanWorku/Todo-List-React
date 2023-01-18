@@ -7,13 +7,14 @@ import InputTodo from './InputTodo';
 import Navbar from './Navbar';
 import About from '../pages/About';
 import NotMatch from '../pages/NotMatch';
-
+// eslint-disable-next-line
 const TodoContainer = () => {
   function getInitialTodos() {
     const temp = localStorage.getItem('todos');
     const savedTodos = JSON.parse(temp);
     return savedTodos || [];
   }
+
   const [todos, setTodos] = useState(getInitialTodos());
 
   useEffect(() => {
@@ -30,21 +31,23 @@ const TodoContainer = () => {
   }, [todos]);
 
   const handleChange = (id) => {
-    setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          return {
-            ...todo,
-            completed: !todo.completed,
-          };
-        }
-        return todo;
-      }),
-    );
+    setTodos(todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          completed: !todo.completed,
+        };
+      }
+      return todo;
+    }));
   };
 
   const delTodo = (id) => {
-    setTodos([...todos.filter((todo) => todo.id !== id)]);
+    setTodos(
+      [
+        ...todos.filter((todo) => todo.id !== id),
+      ],
+    );
   };
 
   const addTodoItem = (title) => {
@@ -53,7 +56,9 @@ const TodoContainer = () => {
       title,
       completed: false,
     };
-    setTodos([...todos, newTodo]);
+    setTodos(
+      [...todos, newTodo],
+    );
   };
 
   const setUpdate = (updatedTitle, id) => {
@@ -88,7 +93,7 @@ const TodoContainer = () => {
                 />
               </div>
             </div>
-					)}
+          )}
         />
         <Route path="/about/*" element={<About />} />
         <Route path="*" element={<NotMatch />} />

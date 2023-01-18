@@ -1,5 +1,5 @@
 import React from 'react';
-
+// eslint-disable-next-line
 const Header = () => {
   const headerStyle = {
     padding: '20px 0',
@@ -8,16 +8,15 @@ const Header = () => {
 
   return (
     <header style={headerStyle}>
-      <h1
-        style={{
-				  fontSize: '6rem',
-				  fontWeight: '600',
-				  marginBottom: '2rem',
-				  lineHeight: '1em',
-				  color: '#ececec',
-				  textTransform: 'lowercase',
-				  textAlign: 'center',
-        }}
+      <h1 style={{
+        fontSize: '6rem',
+        fontWeight: '600',
+        marginBottom: '2rem',
+        lineHeight: '1em',
+        color: '#ccd',
+        textTransform: 'lowercase',
+        textAlign: 'center',
+      }}
       >
         Todos
       </h1>

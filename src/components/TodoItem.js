@@ -1,31 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { FaTrash } from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import styles from './TodoItem.module.css';
-
-const TodoItem = ({
-  todo, handleChangeProps, deleteTodoProps, setUpdate,
-}) => {
-  const { completed, id, title } = todo;
-  const [editing, setEditing] = useState(false);
-  const [updateTodoValue, setUpdateTodoValue] = useState(title);
-
-  useEffect(() => () => {}, []);
-
-  const handleEditing = () => {
-    setEditing(true);
-  };
-
-  const onChangeHandler = (e) => {
-    setUpdateTodoValue(e.target.value);
-  };
-
-  const handleUpdatedDone = (event) => {
-    if (event.key === 'Enter') {
-      setEditing(false);
-      setUpdate(updateTodoValue, id);
-    }
-  };
+// eslint-disable-next-line
+const TodoItem = (props) => {
+  const [isEditing, setEditing] = useState(false);
 
   const completedStyle = {
     fontStyle: 'italic',
@@ -34,35 +13,54 @@ const TodoItem = ({
     textDecoration: 'line-through',
   };
 
+  const { todo } = props;
+  const { completed, id, title } = todo;
+  const { handleChange, delTodo, setUpdate } = props;
+  const { item, textInput } = styles;
+
+  const handleEditing = () => {
+    setEditing(true);
+  };
+
   const viewMode = {};
   const editMode = {};
 
-  if (editing) {
+  if (isEditing) {
     viewMode.display = 'none';
   } else {
     editMode.display = 'none';
   }
 
+  const handleUpdatedDone = (event) => {
+    if (event.key === 'Enter') {
+      setEditing(false);
+    }
+  };
+
   return (
-    <li className={styles.item}>
+    <li className={item}>
       <div onDoubleClick={handleEditing} style={viewMode}>
         <input
           type="checkbox"
           className={styles.checkbox}
           checked={completed}
-          onChange={() => handleChangeProps(id)}
+          onChange={() => handleChange(id)}
         />
-        <button type="button" onClick={() => deleteTodoProps(id)}>
+        <button type="button" onClick={() => delTodo(id)}>
           <FaTrash style={{ color: 'orangered', fontSize: '16px' }} />
         </button>
-        <span style={completed ? completedStyle : null}>{updateTodoValue}</span>
+        <span style={completed ? completedStyle : null}>
+          {title}
+        </span>
       </div>
       <input
         type="text"
         style={editMode}
-        className={styles.textInput}
-        value={updateTodoValue}
-        onChange={onChangeHandler}
+        className={textInput}
+        value={title}
+        onChange={(e) => {
+          setUpdate(e.target.value, id);
+        }}
         onKeyDown={handleUpdatedDone}
       />
     </li>
@@ -71,12 +69,12 @@ const TodoItem = ({
 
 TodoItem.propTypes = {
   todo: PropTypes.shape({
-    id: PropTypes.string,
-    title: PropTypes.string,
-    completed: PropTypes.bool,
+    completed: PropTypes.bool.isRequired,
+    id: PropTypes.number.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired,
-  handleChangeProps: PropTypes.func.isRequired,
-  deleteTodoProps: PropTypes.func.isRequired,
+  handleChange: PropTypes.func.isRequired,
+  delTodo: PropTypes.func.isRequired,
   setUpdate: PropTypes.func.isRequired,
 };
 
